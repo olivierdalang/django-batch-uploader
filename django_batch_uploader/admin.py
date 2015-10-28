@@ -8,7 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
 from django.db.models.fields.related import ManyToManyRel
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseServerError
 from django.template.defaultfilters import capfirst, linebreaksbr
 from django.utils import six
 from django.utils.encoding import force_text, smart_text
@@ -109,8 +109,8 @@ class BaseBatchUploadAdmin(admin.ModelAdmin):
                 field_values = {}
 
                 for output_field in output_fields:
-                    value = unicode(self.get_field_contents(output_field, obj))
-                    label = unicode(label_for_field(output_field, self.model, self))
+                    value = str(self.get_field_contents(output_field, obj))
+                    label = str(label_for_field(output_field, self.model, self))
 
                     field_values[output_field] = {
                         'label':label,
@@ -126,8 +126,8 @@ class BaseBatchUploadAdmin(admin.ModelAdmin):
                 json_dumped = json.dumps(data)
 
                 return HttpResponse(json_dumped, content_type='application/json')
-        except:
-          return None
+        except Exception as e:
+          return HttpResponseServerError(e)
 
 
 
