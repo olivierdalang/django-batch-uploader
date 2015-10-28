@@ -343,7 +343,7 @@
                 $(this.clear_queue_button).show();
                 $(this.uploadable_items_container).show();
             }else{
-                $(this.defaults_container).hide();
+                // $(this.defaults_container).hide();
                 $(this.clear_queue_button).hide();
                 $(this.uploadable_items_container).hide();
             }
@@ -395,7 +395,11 @@
         renderContainer: function(){
             return '<div class="batch-container">\
                 <div class="uploadable-container">\
-                    <h2>1. Select Items to Upload</h2>\
+                    <div class="defaults-container">\
+                        <h2>Apply Default Upload Values</h2>\
+                        <div class="defaults"></div>\
+                    </div>\
+                    <h2>Select Items to Upload</h2>\
                     <form action="" method="post" enctype="multipart/form-data" class="trigger">\
                         <span class="others">Drop Files Here - or - Click to Upload</span>\
                         <span class="ie">Double-Click to Upload</span>\
@@ -417,16 +421,8 @@
                             </div>\
                         </div>\
                     </div>\
-                    <div class="defaults-container">\
-                        <h2>2. Apply Default Upload Values</h2>\
-                        <p class="instructions">Expand this section to set the default values of each field for items uploaded in bulk. If an individual value is specified above, then that individual value will override the defaults below.</p>\
-                        <fieldset class="grp-module grp-collapse grp-closed ">\
-                            <h3 class="grp-collapse-handler">Upload Defaults (Click to Expand )</h3>\
-                            <div class="defaults"></div>\
-                        </fieldset>\
-                    </div>\
                     <div class="start-container">\
-                        <!--<h2>3. Begin Upload</h2>\
+                        <!--<h2>Begin Upload</h2>\
                         <p class="instructions">Click "Start Uploading" to begin uploading. "Pause Uploading" will allow the current item to finish but not process any more items in the queue. To halt an item while uploading, click the (X) button on the left.</p>-->\
                         <div class="button-container">\
                             <a href="#" class="grp-button grp-default start-uploading">Start Uploading</a>\
